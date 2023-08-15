@@ -1,0 +1,246 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji";
+}
+
+.container {
+    padding-left: 200px;
+    .side {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 200px;
+        border-right: 1px solid #ededed;
+        height: 100vh;
+        > div {
+            padding: 5px 20px 5px 20px;
+            &:first-child {
+                padding-top: 20px;
+                padding-bottom: 5px;
+                user-select: none;
+                color: #7e7e7e;
+            }
+            &[data-md] {
+                cursor: pointer;
+                &:hover {
+                    background-color: #f7f7f7;
+                }
+                &.active {
+                    background-color: #4caf50;
+                    color: #fff;
+                }
+            }
+        }
+    }
+    .body {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        height: 100vh;
+        .content {
+            flex: 1;
+            overflow: hidden;
+            overflow-y: scroll;
+            min-height: 0;
+        }
+        .brief {
+            padding: 20px;
+        }
+        .runner,
+        .console {
+            display: flex;
+            gap: 10px;
+            .fetch,
+            .xml {
+                flex: 0 0 calc(50% - 5px);
+                min-width: 0;
+                padding: 0;
+                &:empty {
+                    display: none;
+                }
+            }
+        }
+        .runner {
+            .fetch,
+            .xml {
+                > div {
+                    position: relative;
+                }
+                * {
+                    max-width: 100%;
+                }
+                .CodeMirror {
+                    height: auto;
+                    overflow: visible;
+                    padding: 10px 0;
+                    line-height: 1.5;
+                    font-size: 14px;
+                    > .CodeMirror-scroll {
+                        overflow: hidden !important;
+                        height: auto;
+                        .CodeMirror-gutters {
+                            min-height: 0;
+                        }
+                    }
+                }
+            }
+            &:has(.xml:empty),
+            &:has(.fetch:empty) {
+                .fetch,
+                .xml {
+                    flex: 0 0 100%;
+                }
+            }
+        }
+        .console {
+            flex: 0 0 30%;
+            width: 100%;
+            border-top: 1px solid #ededed;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 0;
+            background-color: #fff;
+            overflow: hidden;
+            .exec {
+                flex: 0 0 100%;
+                height: 30px;
+                display: flex;
+                gap: 10px;
+                padding-right: 10px;
+                .exec-btn {
+                    flex: 1;
+                    background-color: #4caf50;
+                    color: white;
+                    border: none;
+                    font-size: 14px;
+                    cursor: pointer;
+                    &:hover {
+                        background-color: #45a049;
+                    }
+                    &:active {
+                        outline: none;
+                        background-color: #3e8e41;
+                    }
+                    &:focus {
+                        outline: none;
+                    }
+                }
+                .cancel-btn {
+                    flex: 1;
+                    background-color: #f5f7fa;
+                    color: #414141;
+                    border: none;
+                    font-size: 14px;
+                    cursor: pointer;
+                    &:hover {
+                        background-color: #f0f2f5;
+                    }
+                    &:active {
+                        outline: none;
+                        background-color: #ebedf0;
+                    }
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+            > .wrap {
+                display: flex;
+                flex: 1;
+                height: calc(100% - 30px);
+            }
+            .fetch,
+            .xml {
+                height: 100%;
+                font-size: 16px;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+                > div {
+                    &:nth-child(1) {
+                        flex: 0 0 30px;
+                        overflow: hidden;
+                    }
+                    &.content {
+                        flex: 1;
+                        overflow-y: scroll;
+                        min-height: 0;
+                        .error {
+                            background-color: #fee6e6;
+                            color: red;
+                            padding: 0 5px;
+                        }
+                        .log {
+                            padding: 0 5px;
+                            white-space: pre-wrap;
+                            word-break: break-all;
+                        }
+                    }
+                    > div {
+                        display: flex;
+                        padding: 0;
+                        border-bottom: 1px solid #e9e9e9;
+                        &:last-child {
+                            border-bottom: none;
+                        }
+                        &:hover {
+                            background-color: #f7f7f7;
+                        }
+                        > div {
+                            flex: auto;
+                            white-space: pre-wrap;
+                            color: #616161;
+                        }
+                    }
+                }
+            }
+            &:has(.xml[style*="display: none"]),
+            &:has(.fetch[style*="display: none"]) {
+                .fetch,
+                .xml {
+                    flex: 0 0 100%;
+                }
+            }
+        }
+    }
+}
+
+.chat-box {
+    font-size: 18px;
+    line-height: 1.5;
+    padding: 20px;
+    p {
+        &:first-child {
+            font-weight: bold;
+            text-align: center;
+            &::first-letter {
+                margin-left: 0;
+            }
+        }
+        &::first-letter {
+            margin-left: 2em;
+        }
+    }
+    .chat-cursor {
+        height: 1.2em;
+        display: inline-block;
+        width: 4px;
+        background-color: #000;
+        animation: blink 0.8s ease-in-out infinite alternate;
+        vertical-align: text-bottom;
+        margin: 0 4px;
+    }
+}
+
+@keyframes blink {
+    to {
+        opacity: 0;
+    }
+}

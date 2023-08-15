@@ -1,0 +1,19 @@
+{
+  "name": "about-fetch",
+  "version": "1.0.0",
+  "description": "fetch API and Usage in ChatGPT",
+  "main": "index.js",
+  "scripts": {
+    "css": "sass src/client/style/style.scss:src/client/style/style.css --watch --no-source-map",
+    "start": "node src/server/index.js"
+  },
+  "keywords": [],
+  "author": "ikrong",
+  "license": "MIT",
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "conf": "^10.2.0",
+    "express": "^4.18.2",
+    "sass": "^1.64.2"
+  }
+}

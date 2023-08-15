@@ -1,0 +1,61 @@
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetch API</title>
+    <link rel="stylesheet" href="libs/markdown-it/github-markdown.css" />
+    <link rel="stylesheet" href="libs/codemirror/codemirror.min.css" />
+    <link rel="stylesheet" href="libs/codemirror/vscode-dark.css" />
+    <link rel="stylesheet" href="style/style.css" />
+    <script src="libs/markdown-it/markdown-it.js"></script>
+    <script src="libs/codemirror/codemirror.min.js"></script>
+    <script src="libs/codemirror/javascript.min.js"></script>
+    <script src="libs/codemirror/hardwrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="side">
+            <div>目录</div>
+            <div data-md="01 intro">介绍</div>
+            <div data-md="02 json">JSON处理</div>
+            <div data-md="03 blob-img">请求一个图片Blob</div>
+            <div data-md="04 timeout">超时处理</div>
+            <div data-md="05 abort">取消请求</div>
+            <div data-md="06 download">下载文件</div>
+            <div data-md="07 eventSource">EventStream</div>
+            <div data-md="08 fetch-eventStream">Fetch EventStream</div>
+            <div data-md="09 chat-typewriter">Chat Typewriter</div>
+        </div>
+        <div class="body">
+            <div class="content">
+                <div class="brief markdown-body">简介</div>
+                <div class="runner">
+                    <div class="fetch">代码1</div>
+                    <div class="xml">代码2</div>
+                </div>
+            </div>
+            <div class="console">
+                <div class="exec">
+                    <button class="exec-btn">执行</button>
+                    <button class="cancel-btn">取消</button>
+                </div>
+                <div class="wrap">
+                    <div class="fetch">
+                        <div>fetch 控制台</div>
+                        <div class="content"></div>
+                    </div>
+                    <div class="xml">
+                        <div>XMLHttpRequest 控制台</div>
+                        <div class="content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./script/main.js"></script>
+</body>
+
+</html>

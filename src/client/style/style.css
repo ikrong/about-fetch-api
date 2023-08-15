@@ -1,0 +1,250 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.container {
+  padding-left: 200px;
+}
+.container .side {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  border-right: 1px solid #ededed;
+  height: 100vh;
+}
+.container .side > div {
+  padding: 5px 20px 5px 20px;
+}
+.container .side > div:first-child {
+  padding-top: 20px;
+  padding-bottom: 5px;
+  user-select: none;
+  color: #7e7e7e;
+}
+.container .side > div[data-md] {
+  cursor: pointer;
+}
+.container .side > div[data-md]:hover {
+  background-color: #f7f7f7;
+}
+.container .side > div[data-md].active {
+  background-color: #4caf50;
+  color: #fff;
+}
+.container .body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100vh;
+}
+.container .body .content {
+  flex: 1;
+  overflow: hidden;
+  overflow-y: scroll;
+  min-height: 0;
+}
+.container .body .brief {
+  padding: 20px;
+}
+.container .body .runner,
+.container .body .console {
+  display: flex;
+  gap: 10px;
+}
+.container .body .runner .fetch,
+.container .body .runner .xml,
+.container .body .console .fetch,
+.container .body .console .xml {
+  flex: 0 0 calc(50% - 5px);
+  min-width: 0;
+  padding: 0;
+}
+.container .body .runner .fetch:empty,
+.container .body .runner .xml:empty,
+.container .body .console .fetch:empty,
+.container .body .console .xml:empty {
+  display: none;
+}
+.container .body .runner .fetch > div,
+.container .body .runner .xml > div {
+  position: relative;
+}
+.container .body .runner .fetch *,
+.container .body .runner .xml * {
+  max-width: 100%;
+}
+.container .body .runner .fetch .CodeMirror,
+.container .body .runner .xml .CodeMirror {
+  height: auto;
+  overflow: visible;
+  padding: 10px 0;
+  line-height: 1.5;
+  font-size: 14px;
+}
+.container .body .runner .fetch .CodeMirror > .CodeMirror-scroll,
+.container .body .runner .xml .CodeMirror > .CodeMirror-scroll {
+  overflow: hidden !important;
+  height: auto;
+}
+.container .body .runner .fetch .CodeMirror > .CodeMirror-scroll .CodeMirror-gutters,
+.container .body .runner .xml .CodeMirror > .CodeMirror-scroll .CodeMirror-gutters {
+  min-height: 0;
+}
+.container .body .runner:has(.xml:empty) .fetch,
+.container .body .runner:has(.xml:empty) .xml, .container .body .runner:has(.fetch:empty) .fetch,
+.container .body .runner:has(.fetch:empty) .xml {
+  flex: 0 0 100%;
+}
+.container .body .console {
+  flex: 0 0 30%;
+  width: 100%;
+  border-top: 1px solid #ededed;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 0;
+  background-color: #fff;
+  overflow: hidden;
+}
+.container .body .console .exec {
+  flex: 0 0 100%;
+  height: 30px;
+  display: flex;
+  gap: 10px;
+  padding-right: 10px;
+}
+.container .body .console .exec .exec-btn {
+  flex: 1;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+.container .body .console .exec .exec-btn:hover {
+  background-color: #45a049;
+}
+.container .body .console .exec .exec-btn:active {
+  outline: none;
+  background-color: #3e8e41;
+}
+.container .body .console .exec .exec-btn:focus {
+  outline: none;
+}
+.container .body .console .exec .cancel-btn {
+  flex: 1;
+  background-color: #f5f7fa;
+  color: #414141;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+.container .body .console .exec .cancel-btn:hover {
+  background-color: #f0f2f5;
+}
+.container .body .console .exec .cancel-btn:active {
+  outline: none;
+  background-color: #ebedf0;
+}
+.container .body .console .exec .cancel-btn:focus {
+  outline: none;
+}
+.container .body .console > .wrap {
+  display: flex;
+  flex: 1;
+  height: calc(100% - 30px);
+}
+.container .body .console .fetch,
+.container .body .console .xml {
+  height: 100%;
+  font-size: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.container .body .console .fetch > div:nth-child(1),
+.container .body .console .xml > div:nth-child(1) {
+  flex: 0 0 30px;
+  overflow: hidden;
+}
+.container .body .console .fetch > div.content,
+.container .body .console .xml > div.content {
+  flex: 1;
+  overflow-y: scroll;
+  min-height: 0;
+}
+.container .body .console .fetch > div.content .error,
+.container .body .console .xml > div.content .error {
+  background-color: #fee6e6;
+  color: red;
+  padding: 0 5px;
+}
+.container .body .console .fetch > div.content .log,
+.container .body .console .xml > div.content .log {
+  padding: 0 5px;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.container .body .console .fetch > div > div,
+.container .body .console .xml > div > div {
+  display: flex;
+  padding: 0;
+  border-bottom: 1px solid #e9e9e9;
+}
+.container .body .console .fetch > div > div:last-child,
+.container .body .console .xml > div > div:last-child {
+  border-bottom: none;
+}
+.container .body .console .fetch > div > div:hover,
+.container .body .console .xml > div > div:hover {
+  background-color: #f7f7f7;
+}
+.container .body .console .fetch > div > div > div,
+.container .body .console .xml > div > div > div {
+  flex: auto;
+  white-space: pre-wrap;
+  color: #616161;
+}
+.container .body .console:has(.xml[style*="display: none"]) .fetch,
+.container .body .console:has(.xml[style*="display: none"]) .xml, .container .body .console:has(.fetch[style*="display: none"]) .fetch,
+.container .body .console:has(.fetch[style*="display: none"]) .xml {
+  flex: 0 0 100%;
+}
+
+.chat-box {
+  font-size: 18px;
+  line-height: 1.5;
+  padding: 20px;
+}
+.chat-box p:first-child {
+  font-weight: bold;
+  text-align: center;
+}
+.chat-box p:first-child::first-letter {
+  margin-left: 0;
+}
+.chat-box p::first-letter {
+  margin-left: 2em;
+}
+.chat-box .chat-cursor {
+  height: 1.2em;
+  display: inline-block;
+  width: 4px;
+  background-color: #000;
+  animation: blink 0.8s ease-in-out infinite alternate;
+  vertical-align: text-bottom;
+  margin: 0 4px;
+}
+
+@keyframes blink {
+  to {
+    opacity: 0;
+  }
+}
